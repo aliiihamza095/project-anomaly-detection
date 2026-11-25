@@ -1,0 +1,13 @@
+<!-- Group 10 | Report 1 | Section III Literature review | Owner: Shoaib Haneef (sources: NIST, Hariri et al., Nassif et al.) -->
+
+**III. LITERATURE REVIEW**
+
+**A. Authentication attacks and the need for behavior monitoring**
+
+NIST SP 800-63B-4 [2] is the current US authentication guideline and replaces the 2017 edition. It gives guidance that is relevant to this project, but it tells services what to watch for and how to respond rather than how to detect anything. Its list of attacks on authenticators covers online guessing, phishing, social engineering and authentication fatigue [2, Table 3, pp. 60–61]. Online guessing is paired with a cap on consecutive failed attempts (never more than 100) and with risk-based checks on IP address, geolocation, request timing or browser metadata [2, Sec. 3.2.2, pp. 30–31]. The same kinds of signals return in its session-monitoring guidance, which adds usage patterns, velocity and device characteristics, and says that a suspected fraud case should lead to reauthentication, session termination or a notice to support staff [2, Sec. 5.3, p. 57]. An unexpected geolocation is given as one example of a fraud indicator that can trigger extra controls [2, Sec. 2, p. 4]. Reusing one password across services is what makes “password stuffing” possible, because a password exposed on one site gets tried on others [2, Sec. 8.1.2.1, p. 72]. Two limits matter for us: the standard names no detection algorithm, and it cautions that collecting such session characteristics affects privacy [2, Sec. 5.3, p. 57].
+
+**C. Anomaly detection methods**
+
+On the algorithm side, Hariri et al. [5] describe Isolation Forest as a model-free method that depends on anomalies being rare and different: it grows trees on random subsamples and scores each point by the average depth at which it is isolated [5, pp. 1479, 1481]. Because its cuts are axis-parallel, the resulting score maps contain artifacts that can produce false positives [5, pp. 1480–1481]. Their Extended Isolation Forest uses randomly sloped cuts and achieved higher AUC on all five benchmark datasets without a noticeable change in convergence or run time [5, pp. 1483, 1487–1488].
+
+Nassif et al. [7] surveyed 290 studies from 2000 to 2020 and found unsupervised detection to be the most common approach [7, p. 78658]. In their reading of the trade-off, supervised methods suffer from scarce anomaly examples and difficult labeling, while unsupervised ones raise many false alarms when anomalies are not rare enough [7, p. 78659]. They also criticize the fact that 64 of the 290 studies relied on a single metric, usually accuracy or AUC [7, p. 78690].
